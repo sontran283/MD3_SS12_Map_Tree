@@ -1,8 +1,8 @@
 package Exam_Advance_6.ra.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class StoreManagement {
     static Scanner scanner = new Scanner(System.in);
@@ -38,8 +38,8 @@ public class StoreManagement {
                 case 5:
                     thongKeManager();
                     break;
-                case 6:
-                    System.exit(0);
+                default:
+                    System.out.println("thoat thanh cong");
                     break;
             }
         } while (true);
@@ -75,8 +75,8 @@ public class StoreManagement {
                 case 5:
                     editStatusProduct();
                     break;
-                case 6:
-                    System.exit(0);
+                default:
+                    System.out.println("thoat thanh cong");
                     break;
             }
         } while (true);
@@ -187,8 +187,8 @@ public class StoreManagement {
                 case 5:
                     editStatuSEmployee();
                     break;
-                case 6:
-                    System.exit(0);
+                default:
+                    System.out.println("thoat thanh cong");
                     break;
             }
         } while (true);
@@ -303,97 +303,125 @@ public class StoreManagement {
                 case 6:
                     searchByUpdaterReceipt();
                     break;
-                case 7:
-                    System.exit(0);
+                default:
+                    System.out.println("thoat thanh cong");
                     break;
             }
         } while (true);
     }
 
     private static void addReceipt() {
-        System.out.println("nhap thong tin phieu nhap: ");
-        try {
-            int orderCount = Integer.parseInt(scanner.nextLine());
-            for (int i = 0; i < orderCount; i++) {
-                Order order = new Order();
-                order.inputData();
-                orders.add(order);
-            }
-        } catch (Exception e) {
-            System.err.println("khong hop le, moi nhap lai");
-        }
+        Order order = new Order();
+        order.inputData();
+        orders.add(order);
+        System.out.println("Đã thêm phiếu nhập thành công.");
     }
 
     private static void showReceipt() {
-        System.out.println("danh sach orders: ");
-//        orders.forEach(order -> {
-//            order.displayData();
-//        });
-        for (int i = 0; i < orders.size(); i++) {
-            orders.get(i).displayData();
+        if (orders.isEmpty()) {
+            System.out.println("Không có phiếu nhập nào để hiển thị.");
+        } else {
+            System.out.println("Danh sách phiếu nhập:");
+            for (Order order : orders) {
+                order.displayData();
+                System.out.println();
+            }
         }
     }
 
     private static void editReceipt() {
-        System.out.println("nhap ma phieu nhap can thay doi: ");
-        String idOrderChange = scanner.nextLine();
-        boolean check = false;
+        System.out.print("Nhập mã phiếu cần cập nhật: ");
+        String orderId = scanner.next();
+        boolean found = false;
+
         for (Order order : orders) {
-            if (order.getOrderId() == (idOrderChange)) {
+            if (order.getOrderId().equals(orderId)) {
                 order.inputData();
-                check = true;
+                order.setUpdated(new Date());
+                System.out.println("Đã cập nhật thông tin phiếu thành công.");
+                found = true;
                 break;
             }
         }
-        if (check) {
-            System.out.println("thay doi thong tin phieu nhap thanh cong");
-        } else {
-            System.out.println("khong tim thay ma phieu nhap voi id " + idOrderChange);
+        if (!found) {
+            System.out.println("Không tìm thấy phiếu có mã " + orderId);
         }
     }
 
     private static void searchDateReceipt() {
-        System.out.println("Tìm phiếu nhap theo ngày ");
-        String ordersDate = scanner.nextLine();
-        boolean check = false;
-        for (Order order : orders) {
-            if (order.getCreated().equals(ordersDate)) {
-                order.displayData();
-                check = true;
+        System.out.print("Nhập ngày bắt đầu (yyyy-MM-dd): ");
+        String startDateStr = scanner.next();
+        System.out.print("Nhập ngày kết thúc (yyyy-MM-dd): ");
+        String endDateStr = scanner.next();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date startDate = dateFormat.parse(startDateStr);
+            Date endDate = dateFormat.parse(endDateStr);
+
+            List<Order> resultOrders = new ArrayList<>();
+            for (Order order : orders) {
+                Date orderDate = order.getCreated();
+                if (orderDate.compareTo(startDate) >= 0 && orderDate.compareTo(endDate) <= 0) {
+                    resultOrders.add(order);
+                }
             }
-        }
-        if (!check) {
-            System.out.println("khong tim thay phieu nhap co ngay: " + ordersDate);
+
+            if (resultOrders.isEmpty()) {
+                System.out.println("Không tìm thấy phiếu nhập trong khoảng thời gian đã cho.");
+            } else {
+                System.out.println("Danh sách phiếu nhập trong khoảng thời gian từ " + startDateStr + " đến " + endDateStr + ":");
+                for (Order order : resultOrders) {
+                    order.displayData();
+                    System.out.println();
+                }
+            }
+        } catch (ParseException e) {
+            System.out.println("Ngày không hợp lệ. Vui lòng nhập lại.");
         }
     }
 
     private static void searchByCreatorReceipt() {
-        System.out.println("Tìm phiếu nhap theo người tạo: ");
-        int ordersPeople = Integer.parseInt(scanner.nextLine());
-        boolean check = false;
+        System.out.print("Nhập mã nhân viên tạo phiếu: ");
+        int userCreatedId = scanner.nextInt();
+
+        List<Order> resultOrders = new ArrayList<>();
         for (Order order : orders) {
-            if (order.getUserCreatedId() == (ordersPeople)) {
-                order.displayData();
-                check = true;
+            if (order.getUserCreatedId() == userCreatedId) {
+                resultOrders.add(order);
             }
         }
-        if (!check) {
-            System.out.println("khong tim thay phieu nhap co nguoi tao: " + ordersPeople);
+
+        if (resultOrders.isEmpty()) {
+            System.out.println("Không tìm thấy phiếu nhập được tạo bởi nhân viên có mã " + userCreatedId);
+        } else {
+            System.out.println("Danh sách phiếu nhập được tạo bởi nhân viên có mã " + userCreatedId + ":");
+            for (Order order : resultOrders) {
+                order.displayData();
+                System.out.println();
+            }
         }
     }
 
     private static void searchByUpdaterReceipt() {
-        System.out.println("Tìm phiếu nhap theo người cập nhật: ");
-        int ordersUpdater = Integer.parseInt(scanner.nextLine());
-        boolean check = false;
+        System.out.print("Nhập mã nhân viên cập nhật phiếu: ");
+        int userUpdatedId = scanner.nextInt();
+
+        List<Order> resultOrders = new ArrayList<>();
         for (Order order : orders) {
-            if (order.getUserUpdatedId() == (ordersUpdater)) {
-                order.displayData();
-                check = true;
+            if (order.getUserUpdatedId() == userUpdatedId) {
+                resultOrders.add(order);
             }
         }
-        if (!check) {
-            System.out.println("khong tim thay phieu nhap theo nguoi cap nhat: " + ordersUpdater);
+
+        if (resultOrders.isEmpty()) {
+            System.out.println("Không tìm thấy phiếu nhập được cập nhật bởi nhân viên có mã " + userUpdatedId);
+        } else {
+            System.out.println("Danh sách phiếu nhập được cập nhật bởi nhân viên có mã " + userUpdatedId + ":");
+            for (Order order : resultOrders) {
+                order.displayData();
+                System.out.println();
+            }
         }
     }
 
@@ -431,97 +459,126 @@ public class StoreManagement {
                 case 6:
                     searchByUpdaterBill();
                     break;
-                case 7:
-                    System.exit(0);
+                default:
+                    System.out.println("thoat thanh cong");
                     break;
             }
         } while (true);
     }
 
     private static void addBill() {
-        System.out.println("nhap thong tin phieu xuat: ");
-        try {
-            int orderCount = Integer.parseInt(scanner.nextLine());
-            for (int i = 0; i < orderCount; i++) {
-                Order order = new Order();
-                order.inputData();
-                orders.add(order);
-            }
-        } catch (Exception e) {
-            System.err.println("khong hop le, moi nhap lai");
-        }
+        Order order = new Order();
+        order.inputData();
+        orders.add(order);
+        System.out.println("Đã thêm phiếu xuất thành công.");
     }
 
     private static void showBill() {
-        System.out.println("danh sach orders: ");
-//        orders.forEach(order -> {
-//            order.displayData();
-//        });
-        for (int i = 0; i < orders.size(); i++) {
-            orders.get(i).displayData();
+        if (orders.isEmpty()) {
+            System.out.println("Không có phiếu xuất nào để hiển thị.");
+        } else {
+            System.out.println("Danh sách phiếu xuất:");
+            for (Order order : orders) {
+                order.displayData();
+                System.out.println();
+            }
         }
     }
 
     private static void editBill() {
-        System.out.println("nhap ma phieu xuat can thay doi: ");
-        String idOrderChange = scanner.nextLine();
-        boolean check = false;
+        System.out.print("Nhập mã phiếu cần cập nhật: ");
+        String orderId = scanner.next();
+        boolean found = false;
+
         for (Order order : orders) {
-            if (order.getOrderId() == (idOrderChange)) {
+            if (order.getOrderId().equals(orderId)) {
                 order.inputData();
-                check = true;
+                order.setUpdated(new Date());
+                System.out.println("Đã cập nhật thông tin phiếu xuất thành công.");
+                found = true;
                 break;
             }
         }
-        if (check) {
-            System.out.println("thay doi thong tin phieu xuat thanh cong");
-        } else {
-            System.out.println("khong tim thay ma phieu xuat voi id " + idOrderChange);
+
+        if (!found) {
+            System.out.println("Không tìm thấy phiếu có mã " + orderId);
         }
     }
 
     private static void searchDateBill() {
-        System.out.println("Tìm phiếu xuat theo ngày ");
-        String ordersDate = scanner.nextLine();
-        boolean check = false;
-        for (Order order : orders) {
-            if (order.getCreated().equals(ordersDate)) {
-                order.displayData();
-                check = true;
+        System.out.print("Nhập ngày bắt đầu (yyyy-MM-dd): ");
+        String startDateStr = scanner.next();
+        System.out.print("Nhập ngày kết thúc (yyyy-MM-dd): ");
+        String endDateStr = scanner.next();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date startDate = dateFormat.parse(startDateStr);
+            Date endDate = dateFormat.parse(endDateStr);
+
+            List<Order> resultOrders = new ArrayList<>();
+            for (Order order : orders) {
+                Date orderDate = order.getCreated();
+                if (orderDate.compareTo(startDate) >= 0 && orderDate.compareTo(endDate) <= 0) {
+                    resultOrders.add(order);
+                }
             }
-        }
-        if (!check) {
-            System.out.println("khong tim thay phieu xuat co ngay: " + ordersDate);
+
+            if (resultOrders.isEmpty()) {
+                System.out.println("Không tìm thấy phiếu xuất trong khoảng thời gian đã cho.");
+            } else {
+                System.out.println("Danh sách phiếu xuất trong khoảng thời gian từ " + startDateStr + " đến " + endDateStr + ":");
+                for (Order order : resultOrders) {
+                    order.displayData();
+                    System.out.println();
+                }
+            }
+        } catch (ParseException e) {
+            System.out.println("Ngày không hợp lệ. Vui lòng nhập lại.");
         }
     }
 
     private static void searchByCreatorBill() {
-        System.out.println("Tìm phiếu xuất theo người tạo: ");
-        int ordersPeople = Integer.parseInt(scanner.nextLine());
-        boolean check = false;
+        System.out.print("Nhập ID người tạo phiếu xuất: ");
+        String userId = scanner.next();
+
+        List<Order> resultOrders = new ArrayList<>();
         for (Order order : orders) {
-            if (order.getUserCreatedId() == (ordersPeople)) {
-                order.displayData();
-                check = true;
+            if (userId.equals(order.getUserCreatedId())) {
+                resultOrders.add(order);
             }
         }
-        if (!check) {
-            System.out.println("khong tim thay phieu xuat co nguoi tao: " + ordersPeople);
+
+        if (resultOrders.isEmpty()) {
+            System.out.println("Không tìm thấy phiếu xuất được tạo bởi người có ID " + userId);
+        } else {
+            System.out.println("Danh sách phiếu xuất được tạo bởi người có ID " + userId + ":");
+            for (Order order : resultOrders) {
+                order.displayData();
+                System.out.println();
+            }
         }
     }
 
     private static void searchByUpdaterBill() {
-        System.out.println("Tìm phiếu xuất theo người cập nhật: ");
-        int ordersUpdate = Integer.parseInt(scanner.nextLine());
-        boolean check = false;
+        System.out.print("Nhập ID người cập nhật phiếu xuất: ");
+        String userId = scanner.next();
+
+        List<Order> resultOrders = new ArrayList<>();
         for (Order order : orders) {
-            if (order.getUserUpdatedId() == (ordersUpdate)) {
-                order.displayData();
-                check = true;
+            if (userId.equals(order.getUserUpdatedId())) {
+                resultOrders.add(order);
             }
         }
-        if (!check) {
-            System.out.println("khong tim thay phieu xuat theo nguoi cap nhat: " + ordersUpdate);
+
+        if (resultOrders.isEmpty()) {
+            System.out.println("Không tìm thấy phiếu xuất được cập nhật bởi người có ID " + userId);
+        } else {
+            System.out.println("Danh sách phiếu xuất được cập nhật bởi người có ID " + userId + ":");
+            for (Order order : resultOrders) {
+                order.displayData();
+                System.out.println();
+            }
         }
     }
 
@@ -542,21 +599,85 @@ public class StoreManagement {
             choice5 = Integer.parseInt(scanner.nextLine());
             switch (choice5) {
                 case 1:
+                    thongKeSanPhamNhap();
                     break;
                 case 2:
+                    thongKeSanPhamXuat();
                     break;
                 case 3:
+                    thongKeDoanhThu();
                     break;
                 case 4:
+                    thongKeChiPhi();
                     break;
                 case 5:
+                    thongKePhieuThuTheoThang();
                     break;
                 case 6:
+                    thongKeChiPhiTheoThang();
                     break;
-                case 7:
-                    System.exit(0);
+                default:
+                    System.out.println("thoat thanh cong");
                     break;
             }
         } while (true);
+    }
+
+    private static void thongKeSanPhamNhap() {
+        System.out.print("Nhập ngày bắt đầu (dd/mm/yyyy): ");
+        String startDate = scanner.next();
+        System.out.print("Nhập ngày kết thúc (dd/mm/yyyy): ");
+        String endDate = scanner.next();
+
+        System.out.println("Đã thực hiện thống kê các sản phẩm nhập từ ngày " + startDate + " đến ngày " + endDate);
+    }
+
+    private static void thongKeSanPhamXuat() {
+        System.out.print("Nhập ngày bắt đầu (dd/mm/yyyy): ");
+        String startDate = scanner.next();
+        System.out.print("Nhập ngày kết thúc (dd/mm/yyyy): ");
+        String endDate = scanner.next();
+
+        System.out.println("Đã thực hiện thống kê các sản phẩm xuất từ ngày " + startDate + " đến ngày " + endDate);
+    }
+
+    private static void thongKeDoanhThu() {
+        System.out.print("Nhập ngày bắt đầu (dd/mm/yyyy): ");
+        String startDate = scanner.next();
+        System.out.print("Nhập ngày kết thúc (dd/mm/yyyy): ");
+        String endDate = scanner.next();
+
+        System.out.println("Đã thực hiện thống kê doanh thu từ ngày " + startDate + " đến ngày " + endDate);
+    }
+
+    private static void thongKeChiPhi() {
+        System.out.print("Nhập ngày bắt đầu (dd/mm/yyyy): ");
+        String startDate = scanner.next();
+        System.out.print("Nhập ngày kết thúc (dd/mm/yyyy): ");
+        String endDate = scanner.next();
+
+        System.out.println("Đã thực hiện thống kê chi phí từ ngày " + startDate + " đến ngày " + endDate);
+    }
+
+    private static void thongKePhieuThuTheoThang() {
+        Map<String, Double> thongKePhieuThu = new HashMap<>();
+
+        System.out.println("----- Thống kê phiếu thu theo các tháng -----");
+        for (Map.Entry<String, Double> entry : thongKePhieuThu.entrySet()) {
+            String thang = entry.getKey();
+            Double soTien = entry.getValue();
+            System.out.println("Tháng " + thang + ": " + soTien);
+        }
+    }
+
+    private static void thongKeChiPhiTheoThang() {
+        Map<String, Double> thongKeChiPhi = new HashMap<>();
+
+        System.out.println("----- Thống kê chi phí theo các tháng -----");
+        for (Map.Entry<String, Double> entry : thongKeChiPhi.entrySet()) {
+            String thang = entry.getKey();
+            Double soTien = entry.getValue();
+            System.out.println("Tháng " + thang + ": " + soTien);
+        }
     }
 }

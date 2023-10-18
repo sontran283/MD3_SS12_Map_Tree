@@ -2,6 +2,8 @@ package Exam_Advance_6.ra.entity;
 
 import config.Config;
 
+import java.util.Scanner;
+
 public class Product {
     private String productId;
     private static int count = 100;
@@ -54,28 +56,42 @@ public class Product {
     }
 
     public void inputData() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("nhap thong tin: ");
 
-        System.out.println("nhap ten san pham: ");
-        this.productName = Config.scanner().nextLine();
+        while (true) {
+            System.out.print("Nhập productName: ");
+            String input = scanner.nextLine();
+
+            if (input.length() > 0) {
+                this.productName = input;
+                break;
+            } else {
+                System.out.println("Lỗi: productName không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
 
         System.out.println("nhap nha san xuat: ");
         this.manufacturer = Config.scanner().nextLine();
 
-        System.out.println("trang thai");
-        System.out.println("chon 0_ hoạt động");
-        System.out.println("chon 1_ không hoạt động");
-        this.productStatus = Boolean.parseBoolean(Config.scanner().nextLine());
+        while (true) {
+            System.out.print("Nhập productStatus (0 - hoạt động, 1 - không hoạt động): ");
+            String input = scanner.nextLine();
+
+            if (input.equals("0") || input.equals("1")) {
+                this.productStatus = input.equals("0");
+                break;
+            } else {
+                System.out.println("Lỗi: productStatus không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
     }
 
     public void displayData() {
-        System.out.println(
-                "Product{" +
-                        "productId='" + productId + '\'' +
-                        ", productName='" + productName + '\'' +
-                        ", manufacturer='" + manufacturer + '\'' +
-                        ", productStatus=" + productStatus +
-                        '}'
-        );
+        System.out.println("Thông tin sản phẩm:");
+        System.out.println("Product ID: " + productId);
+        System.out.println("Product Name: " + productName);
+        System.out.println("Manufacturer: " + manufacturer);
+        System.out.println("Product Status: " + (productStatus ? "Hoạt động" : "Không hoạt động"));
     }
 }
