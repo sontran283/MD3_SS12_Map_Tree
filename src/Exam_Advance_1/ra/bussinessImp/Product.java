@@ -5,7 +5,7 @@ import Exam_Advance_1.ra.bussiness.IShop;
 import java.util.List;
 import java.util.Scanner;
 
-public class Product implements IShop  {
+public class Product implements IShop {
     private static int idCountProduct = 1;
     private int productId;
     private String productName;
@@ -124,7 +124,7 @@ public class Product implements IShop  {
         for (int i = 0; i < catalogs.size(); i++) {
             System.out.println((i + 1) + ": " + catalogs.get(i).getCatalogName());
         }
-        System.out.println("moi nhap id de chon danh muc: ");
+        System.out.println("moi nhap STT de chon danh muc: ");
         int n = Integer.parseInt(scanner.nextLine());
         if (n >= 1 && n <= catalogs.size()) {
             this.catalog = catalogs.get(n - 1);
@@ -132,8 +132,23 @@ public class Product implements IShop  {
             System.err.println("khong co danh muc de chon");
             return;
         }
+//        for (int i = 0; i < catalogs.size(); i++) {
+//            System.out.println(catalogs.get(i).getCatalogId() + ": " + catalogs.get(i).getCatalogName());
+//        }
+//        System.out.println("moi nhap ID de chon danh muc: ");
+//        int n = Integer.parseInt(scanner.nextLine());
+//        boolean check = false;
+//        for (int i = 0; i < catalogs.size(); i++) {
+//            if (catalogs.get(i).getCatalogId() == n) {
+//                this.catalog = catalogs.get(i);
+//                check = true;
+//            }
+//        }
+//        if (check) {
+//            System.err.println("khong co id danh muc de chon");
+//            return;
+//        }
 
-        System.out.println("tinh toan exportPrice");
         this.exportPrice = this.importPrice * this.RATE;
     }
 
