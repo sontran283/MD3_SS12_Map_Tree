@@ -38,8 +38,8 @@ public class StoreManagement {
                 case 5:
                     thongKeManager();
                     break;
-                default:
-                    System.out.println("thoat thanh cong");
+                case 6:
+                    System.exit(0);
                     break;
             }
         } while (true);
@@ -75,9 +75,8 @@ public class StoreManagement {
                 case 5:
                     editStatusProduct();
                     break;
-                default:
-                    System.out.println("thoat thanh cong");
-                    break;
+                case 6:
+                    return;
             }
         } while (true);
     }
@@ -187,15 +186,14 @@ public class StoreManagement {
                 case 5:
                     editStatuSEmployee();
                     break;
-                default:
-                    System.out.println("thoat thanh cong");
-                    break;
+                case 6:
+                    return;
             }
         } while (true);
     }
 
     private static void addEmployee() {
-        System.out.println("nhap thong tin nhan vien can them: ");
+        System.out.println("nhap so luong nhan vien can them: ");
         try {
             int employeeCount = Integer.parseInt(scanner.nextLine());
             for (int i = 0; i < employeeCount; i++) {
@@ -303,9 +301,8 @@ public class StoreManagement {
                 case 6:
                     searchByUpdaterReceipt();
                     break;
-                default:
-                    System.out.println("thoat thanh cong");
-                    break;
+                case 7:
+                    return;
             }
         } while (true);
     }
@@ -459,9 +456,8 @@ public class StoreManagement {
                 case 6:
                     searchByUpdaterBill();
                     break;
-                default:
-                    System.out.println("thoat thanh cong");
-                    break;
+                case 7:
+                    return;
             }
         } while (true);
     }
@@ -616,9 +612,8 @@ public class StoreManagement {
                 case 6:
                     thongKeChiPhiTheoThang();
                     break;
-                default:
-                    System.out.println("thoat thanh cong");
-                    break;
+                case 7:
+                    return;
             }
         } while (true);
     }
