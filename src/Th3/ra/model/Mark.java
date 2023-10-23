@@ -4,14 +4,14 @@ public class Mark {
     private static int nextMarkId = 1; // Biến tĩnh để tự động tăng mã điểm
     private int markId;
     private Student student;
-    private ra.model.Subject subject;
+    private Subject subject;
     private double point;
 
     public Mark() {
         this.markId = nextMarkId++;
     }
 
-    public Mark(Student student, ra.model.Subject subject, double point) {
+    public Mark(Student student, Subject subject, double point) {
         this.markId = nextMarkId++;
         this.student = student;
         this.subject = subject;
@@ -30,11 +30,11 @@ public class Mark {
         this.student = student;
     }
 
-    public ra.model.Subject getSubject() {
+    public Th3.ra.model.Subject getSubject() {
         return subject;
     }
 
-    public void setSubject(ra.model.Subject subject) {
+    public void setSubject(Subject subject) {
         this.subject = subject;
     }
 
@@ -46,12 +46,13 @@ public class Mark {
         this.point = point;
     }
 
-
-    public void displayData() {
-        System.out.println("Thông tin điểm số:");
-        System.out.println("Mã điểm: " + markId);
-        System.out.println("Tên học sinh: " + student.getStudentName());
-        System.out.println("Tên môn học: " + subject.getSubjectName());
-        System.out.println("Điểm số: " + point);
+    @Override
+    public String toString() {
+        return "Mark{" +
+                "markId=" + markId +
+                ", student=" + student +
+                ", subject=" + subject +
+                ", point=" + point +
+                '}';
     }
 }

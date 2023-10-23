@@ -11,26 +11,34 @@ public class ClassroomServiceIMPL implements IClassroomService {
 
     @Override
     public List<Classroom> findAll() {
-        return null;
+        return classroomList;
     }
 
     @Override
     public void save(Classroom classroom) {
-
+        classroomList.add(classroom);
     }
 
     @Override
     public void update(Classroom classroom) {
-
+        Classroom classroomEdit = findById(classroom.getClassroomId());
+        classroomEdit.setClassroomName(classroom.getClassroomName());
+        classroomEdit.setStatus(classroom.isStatus());
     }
 
     @Override
     public void deleteById(int id) {
-
+        Classroom classroomDelete = findById(id);
+        classroomList.remove(classroomDelete);
     }
 
     @Override
     public Classroom findById(int id) {
+        for (Classroom classroom : classroomList) {
+            if (classroom.getClassroomId() == id) {
+                return classroom;
+            }
+        }
         return null;
     }
 }

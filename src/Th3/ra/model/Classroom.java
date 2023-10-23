@@ -38,27 +38,12 @@ public class Classroom {
         this.status = status;
     }
 
-    public void inputData() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập tên lớp học: ");
-        classroomName = scanner.nextLine();
-
-        boolean validStatus = false;
-        while (!validStatus) {
-            System.out.print("Nhập trạng thái lớp học (true - đang học / false - kết thúc): ");
-            try {
-                status = Boolean.parseBoolean(scanner.nextLine());
-                validStatus = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println("Trạng thái không hợp lệ. Vui lòng nhập lại.");
-            }
-        }
-    }
-
-    public void displayData() {
-        System.out.println("Thông tin lớp học:");
-        System.out.println("Mã lớp học: " + classroomId);
-        System.out.println("Tên lớp học: " + classroomName);
-        System.out.println("Trạng thái lớp học: " + (status ? "Đang học" : "Kết thúc"));
+    @Override
+    public String toString() {
+        return "Classroom{" +
+                "classroomId=" + classroomId +
+                ", classroomName='" + classroomName + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

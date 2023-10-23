@@ -12,11 +12,12 @@ public class Main {
         int choice;
         do {
             System.out.println("********************** SCHOOL-MANAGEMENT ************************");
-            System.out.println("1. quan li lop hoc");
-            System.out.println("2. quan li sinh vien");
-            System.out.println("3. quan li mon hoc");
-            System.out.println("4. quan li diem");
-            System.out.println("5. thoat");
+            System.out.println("1. Quản lý lớp học");
+            System.out.println("2. Quản lý học sinh");
+            System.out.println("3. Quản lý môn học");
+            System.out.println("4. Quản lí điểm thi");
+            System.out.println("5. Thoát chương trình");
+            System.out.println("--->> Mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:
@@ -35,7 +36,7 @@ public class Main {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                    System.out.println("Không hợp lệ. Vui lòng chọn lại.");
                     break;
             }
         } while (true);

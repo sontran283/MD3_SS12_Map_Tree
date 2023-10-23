@@ -16,6 +16,7 @@ public class SubjectManagement {
             System.out.println("3. Thay đổi thông tin học môn học theo mã id");
             System.out.println("4. Xóa môn học theo mã id (kiểm tra nếu môn học  có điểm thi thì không được xóa)");
             System.out.println("5. Quay lại");
+            System.out.println("--->> mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:

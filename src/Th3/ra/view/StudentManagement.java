@@ -16,6 +16,7 @@ public class StudentManagement {
             System.out.println("3. Thay đổi thông tin học sinh theo mã id (chọn lựa từng trường để thay đổi)");
             System.out.println("4. Xóa học sinh theo mã id (kiểm tra xem nếu sinh viên có điểm thi thì không được xóa)");
             System.out.println("5. Quay lại");
+            System.out.println("--->> mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:

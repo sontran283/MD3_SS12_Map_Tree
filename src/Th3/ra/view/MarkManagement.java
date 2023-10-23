@@ -19,6 +19,7 @@ public class MarkManagement {
             System.out.println("6. Hiển thị danh sách điểm thi theo mã môn học (Chọn từng mã môn học để hiển thị) ");
             System.out.println("7. Hiển thị đánh giá học lực của từng học sinh theo mã môn học  ");
             System.out.println("8. Quay lại");
+            System.out.println("--->> mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:

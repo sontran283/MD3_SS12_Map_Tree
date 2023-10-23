@@ -3,22 +3,32 @@ package Th3.ra.model;
 import java.util.Scanner;
 
 public class Subject {
-    private String subjectId;
+    private static int newId = 1;
+    private int subjectId;
     private String subjectName;
 
     public Subject() {
+        this.subjectId = newId++;
     }
 
-    public Subject(String subjectId, String subjectName) {
+    public Subject(int subjectId, String subjectName) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;
     }
 
-    public String getSubjectId() {
+    public static int getNewId() {
+        return newId;
+    }
+
+    public static void setNewId(int newId) {
+        Subject.newId = newId;
+    }
+
+    public int getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(String subjectId) {
+    public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
 
@@ -30,10 +40,11 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-
-    public void displayData() {
-        System.out.println("Thông tin môn học:");
-        System.out.println("Mã môn học: " + subjectId);
-        System.out.println("Tên môn học: " + subjectName);
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "subjectId=" + subjectId +
+                ", subjectName='" + subjectName + '\'' +
+                '}';
     }
 }

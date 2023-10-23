@@ -9,13 +9,13 @@ public class Config {
 
     public static int validateInt() {
         int n;
-        System.out.println("moi nhap: ");
+        System.out.println("mời nhập lựa chọn của bạn: ");
         while (true) {
             try {
                 n = Integer.parseInt(scanner().nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("sai dinh dang, moi nhap lai");
+                System.err.println("sai định dạng, mời nhập lại");
             }
         }
         return n;

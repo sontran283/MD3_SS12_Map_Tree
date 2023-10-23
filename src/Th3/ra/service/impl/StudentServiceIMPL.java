@@ -13,7 +13,7 @@ public class StudentServiceIMPL implements IStudentService {
 
     @Override
     public List<Student> findAll() {
-        return null;
+        return StudentList;
     }
 
     @Override

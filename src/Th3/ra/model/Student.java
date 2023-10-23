@@ -76,15 +76,16 @@ public class Student {
         this.address = address;
     }
 
-
-    public void displayData() {
-        System.out.println("Thông tin học sinh:");
-        System.out.println("Mã học sinh: " + studentId);
-        System.out.println("Tên học sinh: " + studentName);
-        System.out.println("Lớp học: " + classroom.getClassroomName());
-        System.out.println("Ngày sinh: " + birthday);
-        System.out.println("Giới tính: " + (gender ? "Nam" : "Nữ"));
-        System.out.println("Số điện thoại: " + phone);
-        System.out.println("Địa chỉ: " + address);
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                ", classroom=" + classroom +
+                ", birthday='" + birthday + '\'' +
+                ", gender=" + gender +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
