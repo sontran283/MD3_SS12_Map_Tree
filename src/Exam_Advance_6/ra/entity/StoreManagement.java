@@ -20,7 +20,7 @@ public class StoreManagement {
             System.out.println("Chọn 4_ Quản lý phiếu xuất");
             System.out.println("Chọn 5_ Báo cáo thống kê");
             System.out.println("Chọn 6_ Thoát");
-            System.out.println("-->> mời nhập lựa chọn của bạn <<--");
+            System.out.println("-->> Mời nhập lựa chọn của bạn <<--");
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -57,7 +57,7 @@ public class StoreManagement {
             System.out.println("Chọn 4_ Tìm kiếm sản phẩm theo tên");
             System.out.println("Chọn 5_ Cập nhật trạng thái sản phẩm");
             System.out.println("Chọn 6_ Thoát");
-            System.out.println("-->> mời nhập lựa chọn của bạn <<--");
+            System.out.println("-->> Mời nhập lựa chọn của bạn <<--");
             choice1 = Integer.parseInt(scanner.nextLine());
             switch (choice1) {
                 case 1:
@@ -168,7 +168,7 @@ public class StoreManagement {
             System.out.println("Chọn 4_ Tìm nhân viên theo tên nhân viên");
             System.out.println("Chọn 5_ Cập nhật trạng thái của nhân viên");
             System.out.println("Chọn 6_ Thoát");
-            System.out.println("-->> mời nhập lựa chọn của bạn <<--");
+            System.out.println("-->> Mời nhập lựa chọn của bạn <<--");
             choice2 = Integer.parseInt(scanner.nextLine());
             switch (choice2) {
                 case 1:
@@ -280,7 +280,7 @@ public class StoreManagement {
             System.out.println("Chọn 5_ Tìm phiếu nhập theo người tạo");
             System.out.println("Chọn 6_ Tìm phiếu nhập theo người cập nhật");
             System.out.println("Chọn 7_ Thoát");
-            System.out.println("-->> mời nhập lựa chọn của bạn <<--");
+            System.out.println("-->> Mời nhập lựa chọn của bạn <<--");
             choice3 = Integer.parseInt(scanner.nextLine());
             switch (choice3) {
                 case 1:
@@ -435,7 +435,7 @@ public class StoreManagement {
             System.out.println("Chọn 5_ Tìm phiếu xuất theo người tạo");
             System.out.println("Chọn 6_ Tìm phiếu xuất theo người cập nhật");
             System.out.println("Chọn 7_ Thoát");
-            System.out.println("-->> mời nhập lựa chọn của bạn <<--");
+            System.out.println("-->> Mời nhập lựa chọn của bạn <<--");
             choice4 = Integer.parseInt(scanner.nextLine());
             switch (choice4) {
                 case 1:
@@ -591,7 +591,7 @@ public class StoreManagement {
             System.out.println("Chọn 5_ Thống kê phiếu thu theo các tháng");
             System.out.println("Chọn 6_ Thống kê chi phí theo các tháng");
             System.out.println("Chọn 7_ Thoát");
-            System.out.println("-->> mời nhập lựa chọn của bạn <<--");
+            System.out.println("-->> Mời nhập lựa chọn của bạn <<--");
             choice5 = Integer.parseInt(scanner.nextLine());
             switch (choice5) {
                 case 1:

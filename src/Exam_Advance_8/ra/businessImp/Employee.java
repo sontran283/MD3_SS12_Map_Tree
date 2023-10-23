@@ -54,7 +54,7 @@ public class Employee implements IEmployee {
                         ", Commission=" + Commission +
                         ", Salary=" + Salary +
                         ", Status=" + Status +
-                        '};
+                        '}'
         );
     }
 
