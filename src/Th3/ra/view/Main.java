@@ -16,23 +16,23 @@ public class Main {
             System.out.println("2. Quản lý học sinh");
             System.out.println("3. Quản lý môn học");
             System.out.println("4. Quản lí điểm thi");
-            System.out.println("5. Thoát chương trình");
+            System.out.println("0. Thoát chương trình");
             System.out.println("--->> Mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:
-                    new ClassroomManagement().menu();
+                    new ClassroomManagement().menuClassroom();
                     break;
                 case 2:
-                    new StudentManagement().menu();
+                    new StudentManagement().menuStudent();
                     break;
                 case 3:
-                    new SubjectManagement().menu();
+                    new SubjectManagement().menuSubjec();
                     break;
                 case 4:
-                    new MarkManagement().menu();
+                    new MarkManagement().menuMark();
                     break;
-                case 5:
+                case 0:
                     System.exit(0);
                     break;
                 default:

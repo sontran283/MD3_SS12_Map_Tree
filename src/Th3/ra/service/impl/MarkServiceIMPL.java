@@ -17,7 +17,7 @@ public class MarkServiceIMPL implements IMarkService {
 
     @Override
     public void save(Mark mark) {
-
+        MarkList.add(mark);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class MarkServiceIMPL implements IMarkService {
 
     @Override
     public void deleteById(int id) {
-
+        MarkList.remove(findById(id));
     }
 
     @Override

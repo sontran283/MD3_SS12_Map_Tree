@@ -15,7 +15,7 @@ public class ClassroomManagement {
 
     IStudentService studentService = new StudentServiceIMPL();
 
-    public void menu() {
+    public void menuClassroom() {
         int choice;
         do {
             System.out.println("********************** CLASSROOM-MANAGEMENT ************************");
@@ -23,7 +23,7 @@ public class ClassroomManagement {
             System.out.println("2. Hiển thị danh sách tất cả lớp hoc đã lưu trữ");
             System.out.println("3. Thay đổi thông tin lớp học theo mã id (chọn lựa từng trường để thay đổi) \t");
             System.out.println("4. Xóa lớp theo mã id (kiểm tra xem nếu lớp học có sinh viên thì không được xóa) \t");
-            System.out.println("5. Quay lại");
+            System.out.println("0. Quay lại");
             System.out.print("--->> Mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
@@ -39,9 +39,8 @@ public class ClassroomManagement {
                 case 4:
                     deleteListClassroom();
                     break;
-                case 5:
-                    System.exit(0);
-                    break;
+                case 0:
+                    return;
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
                     break;
@@ -94,7 +93,7 @@ public class ClassroomManagement {
                     System.out.println("da thay doi trang thai ");
                     break;
                 default:
-                    System.out.println("ko hop le, moi nhap lai");
+                    System.err.println("ko hop le, moi nhap lai");
                     break;
             }
             classroomService.update(classroomEdit);

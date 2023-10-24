@@ -81,7 +81,7 @@ public class Student {
         return "Student{" +
                 "studentId=" + studentId +
                 ", studentName='" + studentName + '\'' +
-                ", classroom=" + classroom +
+                ", classroom=" + classroom.getClassroomName() +
                 ", birthday='" + birthday + '\'' +
                 ", gender=" + gender +
                 ", phone='" + phone + '\'' +
