@@ -4,10 +4,10 @@ import java.io.*;
 import java.util.List;
 
 public class WriteReadFile<T> {
-    public static final String PATH_STUDENT = "src/Th3/ra/config/student.txt";
-    public static final String PATH_CLASSROOM = "src/Th3/ra/config/classroom.txt";
-    public static final String PATH_MARK = "src/Th3/ra/config/mark.txt";
-    public static final String PATH_SUBJECT = "src/Th3/ra/config/subject.txt";
+    public static final String PATH_STUDENT = "src/Th3/ra/file/student.txt";
+    public static final String PATH_CLASSROOM = "src/Th3/ra/file/classroom.txt";
+    public static final String PATH_MARK = "src/Th3/ra/file/mark.txt";
+    public static final String PATH_SUBJECT = "src/Th3/ra/file/subject.txt";
 
     public void writeFile(String PATH_FILE, List<T> list) {
         File file = new File(PATH_FILE);

@@ -1,14 +1,11 @@
 package Th3.ra.service.impl;
 
 import Th3.ra.config.WriteReadFile;
-import Th3.ra.model.Classroom;
 import Th3.ra.model.Student;
 import Th3.ra.service.IStudentService;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static Th3.ra.service.impl.ClassroomServiceIMPL.writeReadFile;
 
 public class StudentServiceIMPL implements IStudentService {
     static WriteReadFile<Student> writeReadFile = new WriteReadFile<>();
