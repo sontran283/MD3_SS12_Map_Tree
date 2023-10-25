@@ -103,7 +103,7 @@ public class MarkManagement {
             System.out.println("moi chon");
             while (true) {
                 int choice = Config.validateInt();
-                if (choice >= 0 && choice <= studentService.findAll().size()) {
+                if (choice >= 0 && choice >= studentService.findAll().size()) {
                     System.out.println();
                     mark.setSubject(subjectService.findAll().get(choice - 1));
                     break;

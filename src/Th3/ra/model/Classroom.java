@@ -1,19 +1,23 @@
 package Th3.ra.model;
 
-import java.util.Scanner;
+import java.io.Serializable;
 
-public class Classroom {
-    private static int nextClassroomId = 1;
+import static Th3.ra.service.impl.ClassroomServiceIMPL.*;
+
+public class Classroom implements Serializable {
     private int classroomId;
     private String classroomName;
     private boolean status;
 
     public Classroom() {
-        this.classroomId = nextClassroomId++;
+        if (classroomList.isEmpty()) {
+            this.classroomId = 1;
+        } else {
+            this.classroomId = (classroomList.get(classroomList.size() - 1).getClassroomId()) + 1;
+        }
     }
 
     public Classroom(String classroomName, boolean status) {
-        this.classroomId = nextClassroomId++;
         this.classroomName = classroomName;
         this.status = status;
     }

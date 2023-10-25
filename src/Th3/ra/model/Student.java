@@ -1,7 +1,11 @@
 package Th3.ra.model;
 
-public class Student {
-    private static int nextStudentId = 1;
+import java.io.Serializable;
+
+import static Th3.ra.service.impl.MarkServiceIMPL.MarkList;
+import static Th3.ra.service.impl.StudentServiceIMPL.StudentList;
+
+public class Student implements Serializable {
     private int studentId;
     private String studentName;
     private Classroom classroom;
@@ -11,11 +15,14 @@ public class Student {
     private String address;
 
     public Student() {
-        this.studentId = nextStudentId++;
+        if (StudentList.isEmpty()) {
+            this.studentId = 1;
+        } else {
+            this.studentId = (StudentList.get(StudentList.size() - 1).getStudentId()) + 1;
+        }
     }
 
     public Student(String studentName, Classroom classroom, String birthday, boolean gender, String phone, String address) {
-        this.studentId = nextStudentId++;
         this.studentName = studentName;
         this.classroom = classroom;
         this.birthday = birthday;

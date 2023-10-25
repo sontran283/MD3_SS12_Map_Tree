@@ -167,7 +167,7 @@ public class StudentManagement {
             while (true) {
                 int choice = Config.validateInt();
                 if (choice >= 1 && choice <= classroomService.findAll().size()) {
-                    student.setClassroom(classroomService.findAll().get(choice));
+                    student.setClassroom(classroomService.findAll().get(choice-1));
                     break;
                 } else {
                     System.out.println("ko co lop theo lua chon, moi chon lai");

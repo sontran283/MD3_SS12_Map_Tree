@@ -1,14 +1,21 @@
 package Th3.ra.model;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Subject {
-    private static int newId = 1;
+import static Th3.ra.service.impl.StudentServiceIMPL.StudentList;
+import static Th3.ra.service.impl.SubjectServiceIMPL.SubjectList;
+
+public class Subject implements Serializable {
     private int subjectId;
     private String subjectName;
 
     public Subject() {
-        this.subjectId = newId++;
+        if (SubjectList.isEmpty()) {
+            this.subjectId = 1;
+        } else {
+            this.subjectId = (SubjectList.get(SubjectList.size() - 1).getSubjectId()) + 1;
+        }
     }
 
     public Subject(int subjectId, String subjectName) {
@@ -16,13 +23,6 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public static int getNewId() {
-        return newId;
-    }
-
-    public static void setNewId(int newId) {
-        Subject.newId = newId;
-    }
 
     public int getSubjectId() {
         return subjectId;

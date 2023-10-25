@@ -1,18 +1,25 @@
 package Th3.ra.model;
 
-public class Mark {
-    private static int nextMarkId = 1; // Biến tĩnh để tự động tăng mã điểm
+import java.io.Serializable;
+
+import static Th3.ra.service.impl.ClassroomServiceIMPL.classroomList;
+import static Th3.ra.service.impl.MarkServiceIMPL.MarkList;
+
+public class Mark implements Serializable {
     private int markId;
     private Student student;
     private Subject subject;
     private double point;
 
     public Mark() {
-        this.markId = nextMarkId++;
+        if (MarkList.isEmpty()) {
+            this.markId = 1;
+        } else {
+            this.markId = (MarkList.get(MarkList.size() - 1).getMarkId()) + 1;
+        }
     }
 
     public Mark(Student student, Subject subject, double point) {
-        this.markId = nextMarkId++;
         this.student = student;
         this.subject = subject;
         this.point = point;
