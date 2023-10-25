@@ -11,13 +11,14 @@ public class Main {
     public void menu() {
         int choice;
         do {
-            System.out.println("********************** SCHOOL-MANAGEMENT ************************");
-            System.out.println("1. Quản lý lớp học");
-            System.out.println("2. Quản lý học sinh");
-            System.out.println("3. Quản lý môn học");
-            System.out.println("4. Quản lí điểm thi");
-            System.out.println("0. Thoát chương trình");
-            System.out.println("--->> Mời nhập lựa chọn của bạn <<---");
+            System.out.println(".---------------------------SCHOOL-MANAGEMENT--------------------------.");
+            System.out.println("|                         1. Quản lý lớp học                           |");
+            System.out.println("|                         2. Quản lý sinh viên                         |");
+            System.out.println("|                         3. Quản lý môn học                           |");
+            System.out.println("|                         4. Quản lý điểm                              |");
+            System.out.println("|                         0. Thoát                                     |");
+            System.out.println("'----------------------------------------------------------------------'");
+            System.out.println("                  --->> Mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:
@@ -36,7 +37,7 @@ public class Main {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Không hợp lệ. Vui lòng chọn lại.");
+                    System.err.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
                     break;
             }
         } while (true);

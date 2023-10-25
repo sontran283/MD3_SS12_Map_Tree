@@ -18,13 +18,14 @@ public class ClassroomManagement {
     public void menuClassroom() {
         int choice;
         do {
-            System.out.println("********************** CLASSROOM-MANAGEMENT ************************");
-            System.out.println("1. Thêm mới lớp học");
-            System.out.println("2. Hiển thị danh sách tất cả lớp hoc đã lưu trữ");
-            System.out.println("3. Thay đổi thông tin lớp học theo mã id (chọn lựa từng trường để thay đổi) \t");
-            System.out.println("4. Xóa lớp theo mã id (kiểm tra xem nếu lớp học có sinh viên thì không được xóa) \t");
-            System.out.println("0. Quay lại");
-            System.out.print("--->> Mời nhập lựa chọn của bạn <<---");
+            System.out.println(".---------------------------CLASSROOM MANAGER--------------------------.");
+            System.out.println("|                    1. Thêm mới lớp học                               |");
+            System.out.println("|                    2. Hiển thị danh sách lớp học                     |");
+            System.out.println("|                    3. Sửa thông tin của lớp học                      |");
+            System.out.println("|                    4. Xóa lớp học                                    |");
+            System.out.println("|                    0. Quay lai                                       |");
+            System.out.println("'----------------------------------------------------------------------'");
+            System.out.println("                  --->> Mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:
@@ -42,7 +43,7 @@ public class ClassroomManagement {
                 case 0:
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                    System.err.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
                     break;
             }
         } while (true);

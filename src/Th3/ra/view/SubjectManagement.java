@@ -18,13 +18,14 @@ public class SubjectManagement {
     public void menuSubjec() {
         int choice;
         do {
-            System.out.println("********************** SUBJECT-MANAGEMENT ************************");
-            System.out.println("1. Thêm mới môn học");
-            System.out.println("2. Hiển thị danh sách tất cả môn học đã lưu trữ");
-            System.out.println("3. Thay đổi thông tin học môn học theo mã id");
-            System.out.println("4. Xóa môn học theo mã id (kiểm tra nếu môn học  có điểm thi thì không được xóa)");
-            System.out.println("0. Quay lại");
-            System.out.println("--->> Mời nhập lựa chọn của bạn <<---");
+            System.out.println(".----------------------------SUBJECT MANAGER---------------------------.");
+            System.out.println("|                    1. Thêm mới môn học                               |");
+            System.out.println("|                    2. Hiển thị danh sách môn học                     |");
+            System.out.println("|                    3. Sửa thông tin của lớp môn                      |");
+            System.out.println("|                    4. Xóa môn học                                    |");
+            System.out.println("|                    0. Quay lai                                       |");
+            System.out.println("'----------------------------------------------------------------------'");
+            System.out.println("                  --->> Mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:
@@ -42,7 +43,7 @@ public class SubjectManagement {
                 case 0:
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                    System.err.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
                     break;
             }
         } while (true);

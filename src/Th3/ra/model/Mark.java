@@ -2,7 +2,6 @@ package Th3.ra.model;
 
 import java.io.Serializable;
 
-import static Th3.ra.service.impl.ClassroomServiceIMPL.classroomList;
 import static Th3.ra.service.impl.MarkServiceIMPL.MarkList;
 
 public class Mark implements Serializable {
@@ -57,8 +56,8 @@ public class Mark implements Serializable {
     public String toString() {
         return "Mark{" +
                 "markId=" + markId +
-                ", student=" + student +
-                ", subject=" + subject +
+                ", student=" + student.getStudentName() +
+                ", subject=" + subject.getSubjectName() +
                 ", point=" + point +
                 '}';
     }

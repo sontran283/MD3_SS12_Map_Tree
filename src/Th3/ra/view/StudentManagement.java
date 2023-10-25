@@ -20,15 +20,16 @@ public class StudentManagement {
     public void menuStudent() {
         int choice;
         do {
-            System.out.println("********************** STUDENT-MANAGEMENT ************************");
-            System.out.println("1. Thêm mới học sinh");
-            System.out.println("2. Hiển thị danh sách tất cả học sinh đã lưu trữ");
-            System.out.println("3. Thay đổi thông tin học sinh theo mã id (chọn lựa từng trường để thay đổi)");
-            System.out.println("4. Xóa học sinh theo mã id (kiểm tra xem nếu sinh viên có điểm thi thì không được xóa)");
-            System.out.println("5. Sắp xếp theo tên sinh viên");
-            System.out.println("6. Tim kiếm học sinh theo tên hoặc lớp");
-            System.out.println("0. Quay lại");
-            System.out.println("--->> Mời nhập lựa chọn của bạn <<---");
+            System.out.println(".----------------------------STUDENT MANAGER---------------------------.");
+            System.out.println("|               1. Thêm học sinh                                       |");
+            System.out.println("|               2. Hiển thị danh sách hoc sinh                         |");
+            System.out.println("|               3. Sửa thông tin học sinh                              |");
+            System.out.println("|               4. Xóa học sinh                                        |");
+            System.out.println("|               5. Sắp xếp học sinh theo tên                           |");
+            System.out.println("|               6. Tìm kiếm học sinh theo tên hoặc lớp học             |");
+            System.out.println("|               0. Quay lại                                            |");
+            System.out.println("'----------------------------------------------------------------------'");
+            System.out.println("                 --->> Mời nhập lựa chọn của bạn <<---");
             choice = Integer.parseInt(Config.scanner().nextLine());
             switch (choice) {
                 case 1:
@@ -52,7 +53,7 @@ public class StudentManagement {
                 case 0:
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                    System.err.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
                     break;
             }
         } while (true);
