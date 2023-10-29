@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ClassroomServiceIMPL implements IClassroomService {
     static WriteReadFile<Classroom> writeReadFile = new WriteReadFile<>();
-    public  static List<Classroom> classroomList;
+    public static List<Classroom> classroomList;
 
     static {
         classroomList = writeReadFile.readFile(WriteReadFile.PATH_CLASSROOM);
@@ -40,7 +40,6 @@ public class ClassroomServiceIMPL implements IClassroomService {
     public void deleteById(int id) {
         Classroom classroomDelete = findById(id);
         classroomList.remove(classroomDelete);
-
         writeReadFile.writeFile(WriteReadFile.PATH_CLASSROOM, findAll());
     }
 
